@@ -15,6 +15,7 @@ def create_pool(loop,**kw):
         maxsize=kw.get('maxsize',10),
         minsize=kw.get('minsize',1),
         loop=loop)
+        
 #Select function
 @asyncio.coroutine
 def select (sql,args,size=None):
@@ -33,7 +34,7 @@ def select (sql,args,size=None):
 
 #Insert,Update,Delete
 @asyncio.coroutine
-def excute(sql,args):
+def execute(sql,args):
     log(sql)
     with (yeild from __pool) as conn:
         try:

@@ -1,0 +1,21 @@
+--发运
+select *
+  from shipsku t, shipment sh
+ where sh.shipment = t.shipment
+   and sh.order_no = 260073;
+--百货自营采购订单接收数量为0的记录2018-05-18
+select sh.order_no,t.*
+  from shipsku t, shipment sh
+ where sh.shipment = t.shipment
+   and t.qty_received is null
+   and sh.status_code = 'R'
+   and t.item not like '%-%';
+--通过DBLINK查询商品是否传入POS系统2018-05-18
+--自营商品
+select * from xf_itemmas@POSPDB t where t.xf_plu like '%';
+select * from dba_tables@pospdb t where t.owner='NWLOL' and t.table_name like 'XF_%';
+
+--?联营销售代码?
+select t.xf_lastmodtime, t.*
+  from xf_itemmas@ifdb_pos t
+ where t.xf_style like '343007%';

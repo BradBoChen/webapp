@@ -44,4 +44,4 @@ def execute(sql,args):
             yield from cur.close()
         except BaseException as e:
             raise
-        return affencted
+        return affected
